@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Recipe Remix Fiesta!</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <style>
+    body {
+      background: #101c3b;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #fff;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 0 1rem 0;
+      background: linear-gradient(90deg, #223c73 0%, #142144 100%);
+      font-size: 2.3rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #ffeb59;
+      text-shadow: 0 1px 15px #1a306a, 0 2px 0 #fc85a7;
+      border-bottom: 3px solid #fc85a7;
+      user-select: none;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      padding: 0 1rem;
+    }
+
+    form {
+      background: rgba(18,30,60,0.98);
+      border-radius: 18px;
+      box-shadow: 0 3px 32px #22345f66;
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+      width: 330px;
+      min-width: 260px;
+      border: 2px solid #fc85a7;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      color: #ffd700;
+    }
+
+    input, textarea {
+      background: #25335b;
+      color: #fff;
+      border: 1px solid #89b3ff;
+      border-radius: 7px;
+      padding: 0.5rem 0.8rem;
+      font-size: 1rem;
+      transition: border .2s;
+      outline: none;
+      width: 100%;
+      margin-bottom: 2px;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #ffdb6e;
+      background: #304477;
+    }
+
+    textarea {
+      height: 56px;
+      resize: vertical;
+      font-family: inherit;
+    }
+
+    button {
+      margin-top: 0.8rem;
+      padding: 0.8rem 1.6rem;
+      background: linear-gradient(90deg, #fc85a7 30%, #ffd700 90%);
+      color: #101c3b;
+      font-weight: bold;
+      font-size: 1.07rem;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      box-shadow: 0 2px 9px #fc85a78f;
+      transition: background .15s, box-shadow .15s;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #ffb0d6 30%, #ffe567 90%);
+      box-shadow: 0 4px 20px #fc85a77a;
+    }
+
+    .recipes-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .booklet-list {
+      width: 98%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1.8rem;
+      margin-right: 20px;
+    }
+
+    .recipe-card {
+      position: relative;
+      background: 
+        linear-gradient(120deg, #223c73 45%, #395184 95%);
+      color: #fff;
+      border-radius: 18px 4px 18px 4px;
+      box-shadow:
+        2px 10px 40px #0007,
+        0 0 0 8px #fc85a755 inset;
+      padding: 2.2rem 2rem 2rem 2.4rem;
+      min-width: 320px;
+      max-width: 420px;
+      width: 100%;
+      margin-right: 0;
+      border-left: 14px solid #ffd700;
+      border-top: 3px dashed #ffeb59;
+      border-bottom: 3px dashed #ffeb59;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      transition: box-shadow .2s;
+      overflow-wrap: break-word;
+      animation: fadein .6s;
+    }
+
+    @keyframes fadein {
+      0% { opacity: 0; transform: translateY(30px);}
+      80% { opacity: .9;}
+      100% { opacity: 1;transform:translateY(0);}
+    }
+
+    .recipe-title {
+      font-size: 1.28rem;
+      font-weight: 700;
+      color: #ffd700;
+      margin-bottom: 0.68rem;
+      text-shadow: 0 2px #1a306a,0 0 8px #fc85a7bb;
+    }
+
+    .recipe-section {
+      margin-bottom: 0.65rem;
+    }
+
+    .recipe-section strong {
+      color: #fc85a7;
+      font-weight: 600;
+    }
+
+    .festive-dot {
+      display: inline-block;
+      background: #fc85a7;
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      margin: 0 0.4em 0 0;
+      box-shadow: 0px 0px 0 3px #ffd70088,0 0 10px #ffd70033;
+      vertical-align: middle;
+    }
+
+    @media (max-width:930px) {
+      .container {flex-direction: column;}
+      .recipes-area, .booklet-list {
+        width: 100%!important;
+        align-items: stretch;
+        margin:0;
+      }
+      .booklet-list {margin-top:1.5em;}
+    }
+    @media (max-width:500px) {
+      header {
+        font-size: 1.21rem;
+        padding: 1.1rem 0 .7rem 0;
+      }
+      form{padding:1.2rem;}
+      .booklet-list{padding:0 .2rem;}
+      .recipe-card {min-width: unset;max-width: unset;padding:1.1rem 1rem;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="festive-dot"></span>
+    Recipe Remix Fiesta! <small style="font-size:1.1rem;font-weight:normal;color:#fff5;">— Unusual Kitchen Adventures Await!</small>
+  </header>
+  <div class="container">
+    <form id="recipeForm" autocomplete="off">
+      <div>
+        <label for="dishName">Dish Name</label>
+        <input type="text" id="dishName" name="dishName"
+               required placeholder="e.g. Spicy Miso Noodle Cake"/>
+      </div>
+      <div>
+        <label for="ingredients">Ingredients</label>
+        <textarea id="ingredients" name="ingredients" required
+           placeholder="e.g. 2 cups rice noodles, 1 tbsp miso, 2 eggs, 1 spring onion, dash of chilli flakes"></textarea>
+      </div>
+      <div>
+        <label for="equipment">Equipment used</label>
+        <input type="text" id="equipment" name="equipment"
+               required placeholder="e.g. Wok, Chopsticks, Non-stick Pan"/>
+      </div>
+      <div>
+        <label for="instructions">Instructions</label>
+        <textarea id="instructions" name="instructions" required
+           placeholder="e.g. Boil noodles. Toss with miso and eggs in the pan. Garnish and serve hot!"></textarea>
+      </div>
+      <div>
+        <label for="preptime">Prep Time</label>
+        <input type="text" id="preptime" name="preptime"
+               required placeholder="e.g. 15 minutes"/>
+      </div>
+      <div>
+        <label for="servings">Number of Servings</label>
+        <input type="number" id="servings" name="servings"
+               required min="1" max="99"
+               placeholder="e.g. 3"/>
+      </div>
+      <button type="submit">Print Recipe</button>
+    </form>
+    <div class="recipes-area">
+      <div class="booklet-list" id="recipesList"></div>
+    </div>
+  </div>
+  <script>
+    const form = document.getElementById('recipeForm');
+    const recipesList = document.getElementById('recipesList');
+
+    function createRecipeMessage(entry) {
+      const line = s => `<div class="recipe-section">${s}</div>`;
+      return `
+        <div class="recipe-title">✨ ${entry.dishName}</div>
+        ${line(`<strong>Ingredients:</strong> ${escapeHTML(entry.ingredients)}`)}
+        ${line(`<strong>Equipment:</strong> ${escapeHTML(entry.equipment)}`)}
+        ${line(`<strong>Instructions:</strong> ${escapeHTML(entry.instructions)}`)}
+        ${line(`<strong>Prep Time:</strong> <em>${escapeHTML(entry.preptime)}</em>`)}
+        ${line(`<strong>Serves:</strong> <span style="color:#ffd700;font-weight:700">${escapeHTML(entry.servings)}</span> hungry ${entry.servings==1?'soul':'folks'}.`)}
+        <hr style="border:none;border-top:1px dotted #ffd700aa;margin: 0.8rem 0;">
+        <div style="margin-top:0.7rem;font-size:1.08rem;color:#ffeb59;">
+        <strong>Chef’s Remark:</strong>
+        <span style="color:#fff;font-size:1rem;font-weight:normal;">
+        Ready your <b>${escapeHTML(entry.equipment)}</b>, summon your inner chef, and let <b>${escapeHTML(entry.dishName)}</b> shine!
+        This dish, prepared in just <b>${escapeHTML(entry.preptime)}</b>, will tickle the taste-buds of ${entry.servings == 1 ? 'a solitary gourmet' : escapeHTML(entry.servings)+' eager diners'}.
+        </span>
+        </div>
+      `;
+    }
+
+    function escapeHTML(str) {
+      return ('' + str).replace(/[&<>"']/g, function(m) {
+        return ({
+          '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+        })[m];
+      });
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const entry = {
+        dishName: form.dishName.value.trim() || "Mystery Dish",
+        ingredients: form.ingredients.value.trim(),
+        equipment: form.equipment.value.trim(),
+        instructions: form.instructions.value.trim(),
+        preptime: form.preptime.value.trim(),
+        servings: form.servings.value.trim() || "1"
+      };
+
+      const card = document.createElement('section');
+      card.className = 'recipe-card';
+      card.innerHTML = createRecipeMessage(entry);
+
+      recipesList.insertBefore(card, recipesList.firstChild);
+
+      form.reset();
+      form.dishName.focus();
+    });
+  </script>
+</body>
+</html>
